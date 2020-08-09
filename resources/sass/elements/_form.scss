@@ -1,0 +1,33 @@
+
+.form {
+
+    &-control {
+        max-width: 380px;
+
+        &:focus,
+        &:active {
+            box-shadow: 0 3px 10px rgba(0,0,0,.08);
+        }
+    }
+    
+    &-label {
+        font-size: .7rem;
+        line-height: 1;
+    }
+    &-footer {
+        border-top: 1px solid $gray-300;
+        padding-top: 1.75rem;
+    }
+
+}
+
+
+.help-block {
+    position: absolute;
+}
+.custom-control-label {
+    font-size: .875rem;
+}
+.input-group {
+    max-width: 380px;
+}

@@ -1,0 +1,17 @@
+@import 'variables';
+@import '~bootstrap/scss/bootstrap';
+@import '~sweetalert2/src/sweetalert2';
+
+@import 'elements/card';
+@import 'elements/navbar';
+@import 'elements/buttons';
+@import 'elements/form';
+@import 'elements/modal';
+@import 'elements/transitions';
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500,600;700&display=swap');
+
+.close {
+    font-size: 1.875rem;
+    font-weight: 500;
+}
