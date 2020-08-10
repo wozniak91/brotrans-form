@@ -30,7 +30,6 @@ export default {
       default: []
     },
     delivery_price: {
-      type: Number,
       default: 0
     }
   },

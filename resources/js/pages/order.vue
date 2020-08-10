@@ -80,10 +80,11 @@
           </div>
 
           <h4 class="h5 pb-2 border-bottom mb-0">{{ $t('products') }}</h4>
-          <order-products :products.sync="form.products" @addProduct="addProduct" @removeProduct="removeProduct" />
           <has-error :form="form" field="products" :class="{ 'd-block': form.errors.has('products') }" />
+          <order-products :products.sync="form.products"  @addProduct="addProduct" @removeProduct="removeProduct" />
+          
           <h4 class="h5 pb-2 border-bottom mt-4 mb-0">{{ $t('summary') }}</h4>
-          <order-summary :products.sync="form.products" :delivery_price.sync="form.delivery_price"  />
+          <order-summary :products.sync="form.products" :delivery_price.sync="form.delivery_price" />
           <!-- Submit Button -->
           <div class="form-footer d-flex justify-content-end">
             <v-button :loading="form.busy" type="success">
@@ -101,6 +102,8 @@
 import Form from 'vform';
 import OrderProducts from './../components/Order/OrderProducts'
 import OrderSummary from './../components/Order/OrderSummary'
+import Swal from 'sweetalert2'
+
 export default {
   middleware: 'auth',
 
@@ -132,11 +135,28 @@ export default {
   }),
   methods: {
     submit() {
+
       this.form.post(`/api/order`)
         .then(resp => resp.data)
         .then(resp => {
           console.log(resp)
           this.form.reset();
+
+          const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn btn-success',
+              cancelButton: 'btn btn-link'
+            },
+            buttonsStyling: false
+          })
+
+          swalWithBootstrapButtons.fire({
+            icon: 'success',
+            title: this.$t('thanks_you'),
+            text: this.$t('your_order_has_been_success'),
+            showConfirmButton: true
+          })
+
         })
     },
     addProduct(product) {

@@ -25,8 +25,17 @@ axios.interceptors.request.use(request => {
 axios.interceptors.response.use(response => response, error => {
   const { status } = error.response
 
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-success',
+      cancelButton: 'btn btn-link',
+      reverseButtons: 'btn btn-primary'
+    },
+    buttonsStyling: false
+  })
+
   if (status >= 500) {
-    Swal.fire({
+    swalWithBootstrapButtons.fire({
       type: 'error',
       title: i18n.t('error_alert_title'),
       text: i18n.t('error_alert_text'),
@@ -37,7 +46,7 @@ axios.interceptors.response.use(response => response, error => {
   }
 
   if (status === 401 && store.getters['auth/check']) {
-    Swal.fire({
+    swalWithBootstrapButtons.fire({
       type: 'warning',
       title: i18n.t('token_expired_alert_title'),
       text: i18n.t('token_expired_alert_text'),

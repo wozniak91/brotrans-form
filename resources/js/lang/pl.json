@@ -73,5 +73,7 @@
   "delivery_address_placeholder": "np. Warszawska 1",
   "delivery_city_placeholder": "np. Wieruszów",
   "delivery_postcode_placeholder": "np. 98-400",
-  "phone_placeholder": "np. +48 600 500 400"
+  "phone_placeholder": "np. +48 600 500 400",
+  "thanks_you": "Dziękujemy",
+  "your_order_has_been_success": "Twoje zamówienie zostało złożone."
 }
