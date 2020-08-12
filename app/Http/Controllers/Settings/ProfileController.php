@@ -18,10 +18,18 @@ class ProfileController extends Controller
         $user = $request->user();
 
         $this->validate($request, [
-            'name' => 'required',
+            'firstname' => 'required|max:255',
+            'lastname' => 'required|max:255',
+            'phone' => 'required|max:255',
+            'company' => 'required|max:255',
+            'vat_number' => 'required|max:255',
+            'street' => 'required|max:255',
+            'city' => 'required|max:255',
+            'postcode' => 'required|max:255',
             'email' => 'required|email|unique:users,email,'.$user->id,
         ]);
 
-        return tap($user)->update($request->only('name', 'email'));
+        return tap($user)->update($request->only('firstname', 'lastname', 'phone', 
+            'company', 'vat_number', 'street', 'city', 'postcode', 'email'));
     }
 }

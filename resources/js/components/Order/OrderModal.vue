@@ -19,7 +19,7 @@
           </div>
 
           <!-- weight -->
-          <div class="form-group col-12 col-md-4">
+          <div class="form-group col-12 col-md-5">
             <label class="form-label">{{ $t('weight') }}</label>
             <div class="input-group">
               <input v-model.trim="$v.weight.$model" min="1" :class="{ 'is-invalid': $v.weight.$error }" class="form-control" type="number" name="weight">
@@ -28,18 +28,6 @@
               </div>
             </div>
             <div class="help-block invalid-feedback" :class="{ 'd-block': $v.weight.$error }" v-if="!$v.weight.required">{{ $t('weight_is_required') }}</div>
-          </div>
-
-          <!-- price -->
-          <div class="form-group col-12 col-md-4">
-            <label class="form-label">{{ $t('price') }}</label>
-            <div class="input-group">
-              <input v-model.trim="$v.price_brutto.$model" :class="{ 'is-invalid': $v.price_brutto.$error }" min="0" class="form-control" type="number" name="price_brutto">
-              <div class="input-group-append">
-                <span class="input-group-text">zł</span>
-              </div>
-            </div>
-            <div class="help-block invalid-feedback" :class="{ 'd-block': $v.price_brutto.$error }" v-if="!$v.price_brutto.required">{{ $t('price_is_required') }}</div>
           </div>
 
           <!-- quantity -->
@@ -91,10 +79,6 @@ export default {
     name: {
       required,
       minLength: minLength(4)
-    },
-    price_brutto: {
-      required,
-      numeric
     },
     quantity: {
       required,

@@ -92,11 +92,12 @@
 
               </div>
             </div>
-
+            <div class="form-footer d-flex justify-content-end">
+              <v-button :loading="form.busy">
+                {{ $t('register') }}
+              </v-button>
+            </div>
           </div>
-          <v-button :block="true" :loading="form.busy">
-            {{ $t('register') }}
-          </v-button>
         </form>
       </div>
     </div>

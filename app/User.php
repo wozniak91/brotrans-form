@@ -4,12 +4,13 @@ namespace App;
 
 use App\Notifications\ResetPassword;
 use App\Notifications\VerifyEmail;
+use App\Notifications\OrderConfirmation;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
+class User extends Authenticatable implements JWTSubject, MustVerifyEmail
 {
     use Notifiable;
 
@@ -87,6 +88,17 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
     public function sendEmailVerificationNotification()
     {
         $this->notify(new VerifyEmail);
+    }
+
+    /**
+     * Send the new user order confirmation.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendOrderConfirmationNotification($order_id)
+    {
+        $this->notify(new OrderConfirmation($order_id));
     }
 
     /**

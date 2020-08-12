@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Facades\Lang;
 
 class OrdersController extends Controller
 {
@@ -37,7 +39,7 @@ class OrdersController extends Controller
 
         $parameters = collect($request);
 
-        $parameters['order_status_id'] = 75068;
+        $parameters['order_status_id'] = 76198;
         $parameters['date_add'] = time();
         $parameters['delivery_method'] = "Transport własny (Bromarkt)";
         $parameters['currency'] = 'PLN';
@@ -46,7 +48,7 @@ class OrdersController extends Controller
         
         $response = $this->client->request('POST', 'https://api.baselinker.com/connector.php', [
             'form_params' => [
-                'token' => '1002410-1010612-6DY8GPOAOWU9SFYR2WTZ18VAZWBN4Y3UVPT1CD3MSE1X6YET9K5ZPZA0CT6VYH3A',
+                'token' => '1001051-1003443-02JAUKZRRE92WM7BXH7X56ZQEN1UY0OWIQEUE5XKKWNTMOA3T1BFAJZPLDIP1M18',
                 'method' => 'addOrder',
                 'parameters' => $parameters->toJson()
             ]
@@ -54,6 +56,10 @@ class OrdersController extends Controller
 
         $result = json_decode($response->getBody(), true);
         
+        if($result['status'] == "SUCCESS") {
+            $request->user()->sendOrderConfirmationNotification($result['order_id']);
+        }
+
         return [
             'result' => $result,
             'params' => $parameters

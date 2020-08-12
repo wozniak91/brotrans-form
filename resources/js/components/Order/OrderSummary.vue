@@ -4,12 +4,8 @@
       <table class="table table-hover">
         <tbody>
           <tr class="font-weight-normal">
-            <td class="border-top-0">{{ $t('delivery_price') }}</td>
-            <td class="border-top-0">{{ delivery_price }} zł</td>
-          </tr>
-          <tr class="font-weight-normal">
-            <td>{{ $t('total_products') }}</td>
-            <td>{{ totalProducts }} zł</td>
+            <td class="border-top-0">{{ $t('total_products') }}</td>
+            <td class="border-top-0">{{ totalProducts }}</td>
           </tr>
           <tr class="font-weight-bold">
             <td>{{ $t('total_to_paid') }}</td>
@@ -35,21 +31,12 @@ export default {
   },
   computed: {
     totalProducts: function() {
-      let total = 0;
-      this.products.map(product => {
-        total += parseInt(product.price_brutto)*parseInt(product.quantity)
-      })
-
-      return total;
+      return this.products.reduce(function(total, product) {
+        return total + parseInt(product.quantity);
+      }, 0);
     },
     total: function () {
-      let total = parseInt(this.delivery_price);
-
-      this.products.map(product => {
-        total += parseInt(product.price_brutto)*parseInt(product.quantity)
-      })
-
-      return total;
+      return parseInt(this.delivery_price);
     }
   }
   

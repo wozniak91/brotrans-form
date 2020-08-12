@@ -77,8 +77,8 @@ class RegisterController extends Controller
             'vat_number' => $data['vat_number'],
             'street' => $data['street'],
             'city' => $data['city'],
-            'postcode' => $data['city'],
-            'email' => $data['postcode'],
+            'postcode' => $data['postcode'],
+            'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
     }

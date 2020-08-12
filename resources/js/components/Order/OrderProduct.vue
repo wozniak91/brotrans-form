@@ -2,7 +2,6 @@
   <article class="OrderProduct">
     <h5 class="OrderProduct__name">{{ product.name }}</h5>
     <div class="OrderProduct__details">
-      <span class="OrderProduct__price pr-1">{{ $t('price') }}: {{ product.price_brutto }} zł</span>
       <span class="OrderProduct__quantity pr-1">{{ $t('quantity') }}: {{ product.quantity }}</span>
       <span class="OrderProduct__weight">{{ $t('weight') }}: {{ product.weight }} kg</span>
       <button class="OrderProduct__remove" type="button" @click="removeProduct">

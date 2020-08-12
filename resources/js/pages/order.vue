@@ -71,7 +71,7 @@
           <div class="form-group">
             <label class="form-label">{{ $t('delivery_price') }}</label>
             <div class="input-group">
-              <input v-model="form.delivery_price" :class="{ 'is-invalid': form.errors.has('delivery_price') }" min="0" class="form-control" type="number" name="delivery_price" >
+              <input v-model="form.delivery_price" :class="{ 'is-invalid': form.errors.has('delivery_price') }" min="0" class="form-control" type="number" name="delivery_price" :disabled="form.paid == '1'" >
               <div class="input-group-append">
                 <span class="input-group-text">PLN</span>
               </div>
@@ -113,6 +113,13 @@ export default {
   components: {
     OrderProducts,
     OrderSummary
+  },
+  watch: {
+    'form.paid': function(status) {
+      if(status == "1" ) {
+        this.$data.form.delivery_price = 0;
+      }
+    }
   },
   data: () => ({
     form: new Form({

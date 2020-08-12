@@ -1,8 +1,9 @@
 <template>
   <div class="row mt-5">
     <div class="col-lg-5 m-auto">
+      <img class="img-fluid d-block mb-4 mx-auto" width="200" src="/assets/img/logo.png"/>
       <div class="card">
-        <h3 class="card-title">{{ $t('Login') }}</h3>
+        <h3 class="card-title text-center pt-3 pb-0">{{ $t('Login') }}</h3>
         <form @submit.prevent="login" @keydown="form.onKeydown($event)">
           <div class="card-body">
             <!-- Email -->
